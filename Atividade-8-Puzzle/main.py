@@ -1,4 +1,5 @@
 from busca import BFS, DFS
+
 n = 3
 print("Insira sua matriz",n,"*",n)
 raiz = []
@@ -37,8 +38,15 @@ if decifravel(raiz):
     print('Número de nós explorados: ', DFS_solucao[1]) 
     BFS_solucao = BFS(raiz, n)
     print('Solução usando BUSCA EM LARGURA: ', BFS_solucao[0][0])
+    count = 0
     for passos in BFS_solucao[0][1]:
-        print(passos)
+        listB = enumerate(passos)
+        for item in listB:
+            if not item[0] % 3:
+                print()
+            print(item[1], end=" ")
+        print()
+
     print('Número mínimo de movimentos: ', len(BFS_solucao[0][0]))
     print('Número de nós explorados: ', BFS_solucao[1])    
           
