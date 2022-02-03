@@ -33,7 +33,16 @@ def decifravel(puzzle):
 if decifravel(raiz):
     print("Decifrando... \n")
     DFS_solucao = DFS(raiz, n)
-    print('Solução usando BUSCA EM PROFUNDIDADE: ', DFS_solucao[0])
+    print('Solução usando BUSCA EM PROFUNDIDADE: ', DFS_solucao[0][0])
+    count = 0
+    for passos in DFS_solucao[0][1]:
+        listB = enumerate(passos)
+        for item in listB:
+            if not item[0] % 3:
+                print()
+            print(item[1], end=" ")
+        print()
+
     print('Número mínimo de movimentos: ', len(DFS_solucao[0][0]))
     print('Número de nós explorados: ', DFS_solucao[1]) 
     BFS_solucao = BFS(raiz, n)
