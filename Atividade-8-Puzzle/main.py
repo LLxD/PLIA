@@ -36,7 +36,9 @@ if decifravel(raiz):
     print('Número mínimo de movimentos: ', len(DFS_solucao[0][0]))
     print('Número de nós explorados: ', DFS_solucao[1]) 
     BFS_solucao = BFS(raiz, n)
-    print('Solução usando BUSCA EM LARGURA: ', BFS_solucao[0])
+    print('Solução usando BUSCA EM LARGURA: ', BFS_solucao[0][0])
+    for passos in BFS_solucao[0][1]:
+        print(passos)
     print('Número mínimo de movimentos: ', len(BFS_solucao[0][0]))
     print('Número de nós explorados: ', BFS_solucao[1])    
           
