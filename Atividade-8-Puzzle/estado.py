@@ -2,7 +2,9 @@ class Estado:
     goal = [1, 2, 3, 4, 5, 6, 7, 8, 0] 
     #isso precisa ser alterado manualmente caso o N mude
     #por exemplo, precisa ser [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 0] com n = 4.
-    
+    calculo = None
+    calculo_A_estrela = None
+    heuristica = None
     def __init__(self, estado, pai, direcao, profundidade, custo):
         self.estado = estado
         self.pai = pai
@@ -22,7 +24,17 @@ class Estado:
             return True
         return False          
                     
+    def distancia(self ,n): 
+            self.heuristica = 0
+            for i in range(1 , n*n):
+                distancia = abs(self.estado.index(i) - self.goal.index(i))
+                
+                self.heuristica = self.heuristica + distancia/n + distancia%n
 
+            self.calculo = self.heuristica    
+            self.calculo_A_estrela = self.heuristica + self.custo
+            
+            return( self.calculo, self.calculo_A_estrela)
 
     @staticmethod
     

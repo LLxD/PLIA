@@ -1,6 +1,7 @@
 from estado import Estado
 from queue import Queue
 from queue import LifoQueue
+from queue import PriorityQueue
 
 
 #BUSCA EM LARGURA
@@ -48,3 +49,28 @@ def DFS(estado_atual , n):
                     return filho.solucao(), len(explorados)
                 fila.put(filho)
     return ("Não foi encontrada solução com a profundidade máxima atual", len(explorados))
+
+#A* = BFS + Dijkstra
+def AStar_search(given_estado , n):
+    limite = PriorityQueue()
+    explorados = []
+    contador = 0
+    raiz = Estado(given_estado, None, None, 0, 0)
+    calculo = raiz.distancia(n)
+    limite.put((calculo[1], contador, raiz))
+
+    while not limite.empty():
+        noh_atual = limite.get()
+        noh_atual = noh_atual[2]
+        explorados.append(noh_atual.estado)
+        
+        if noh_atual.sucesso():
+            return noh_atual.solucao(), len(explorados)
+
+        filhos = noh_atual.expandir(n)
+        for filho in filhos:
+            if filho.estado not in explorados:
+                contador += 1
+                calculo = filho.distancia(n) 
+                limite.put((calculo[1], contador, filho))
+    return

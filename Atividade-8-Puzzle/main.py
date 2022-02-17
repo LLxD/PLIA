@@ -1,4 +1,4 @@
-from busca import BFS, DFS
+from busca import BFS, DFS, AStar_search
 
 n = 3
 print("Insira sua matriz",n,"*",n)
@@ -33,7 +33,7 @@ def decifravel(puzzle):
 if decifravel(raiz):
     print("Decifrando... \n")
     DFS_solucao = DFS(raiz, n)
-    print('Solução usando BUSCA EM PROFUNDIDADE: ', DFS_solucao[0][0])
+    print('Solução usando BUSCA EM PROFUNDIDADE: ', DFS_solucao[0])
     count = 0
     for passos in DFS_solucao[0][1]:
         listB = enumerate(passos)
@@ -57,7 +57,21 @@ if decifravel(raiz):
         print()
 
     print('Número mínimo de movimentos: ', len(BFS_solucao[0][0]))
-    print('Número de nós explorados: ', BFS_solucao[1])    
+    print('Número de nós explorados: ', BFS_solucao[1])
+
+    A_estrela = AStar_search(raiz, n)
+    print('Solução usando A_ESTRELA: ', A_estrela[0][0])
+    count = 0
+    for passos in A_estrela[0][1]:
+        listB = enumerate(passos)
+        for item in listB:
+            if not item[0] % 3:
+                print()
+            print(item[1], end=" ")
+        print()
+
+    print('Número mínimo de movimentos: ', len(A_estrela[0][0]))
+    print('Número de nós explorados: ', A_estrela[1])    
           
     
     
